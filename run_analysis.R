@@ -51,6 +51,10 @@ all$activity_code<-factor(all$activity_code,levels=activity$V1, labels=activity$
 
 
 #get the average of each variable for each activity and each subject
+#will install the reshape2 library if you don't have it
+if(!is.element('reshape2', installed.packages()[,1]))
+  {install.packages('reshape2')
+}
 library("reshape2")
 all_molten <- melt(all, id=c("ID","activity_code"))
 tidy <- dcast(all_molten, formula= ID + activity_code ~ variable, mean)
