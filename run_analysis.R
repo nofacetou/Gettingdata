@@ -41,12 +41,14 @@ colnames(subject_test) <- "ID"
 #merge the above 6 datasets into 2 separate datasets: train and test
 test <- cbind(ID=subject_test$ID, activity_code=y_test$activity_code,X_test)
 train <- cbind(ID=subject_train$ID, activity_code=y_train$activity_code,X_train)
-#label the activity code
-train$activity_code<-factor(train$activity_code,levels=activity$V1, labels=activity$V2)
-test$activity_code<-factor(test$activity_code,levels=activity$V1, labels=activity$V2)
+
 
 #merge train and test into one dataset
 all <- rbind(train,test)
+
+#label the activity code
+all$activity_code<-factor(all$activity_code,levels=activity$V1, labels=activity$V2)
+
 
 #get the average of each variable for each activity and each subject
 library("reshape2")
